@@ -1,13 +1,11 @@
 package bank
 import akka.actor.ActorSystem
-import akka.pattern.ask
 import akka.testkit.{CallingThreadDispatcher, TestKit, EventFilter}
 import org.scalatest.{MustMatchers, WordSpecLike}
 import akka.util.Timeout
 import scala.concurrent.duration._
-import scala.util.{Success, Failure}
 
-class BankSilentActorSpec extends TestKit(ActorSystem("testSystem"))
+class BankActorSpec extends TestKit(ActorSystem("testSystem"))
   with WordSpecLike
   with MustMatchers
   with StopSystemAfterAll {

@@ -20,11 +20,11 @@ object Client extends App {
 
   bankActor ! Withdraw(inputMoney)
   bankActor ! Withdraw(nextInputMoney)
-  (bankActor ? ShowAccount()).mapTo[Int].onComplete {
-    case Success(value) =>
-      println(s"Money of your account is ${value}")
-      system.terminate()
-    case Failure(e) =>
-      system.terminate()
-  }
+//  (bankActor ? ShowAccount()).mapTo[Int].onComplete {
+//    case Success(value) =>
+//      println(s"Money of your account is ${value}")
+//      system.terminate()
+//    case Failure(e) =>
+//      system.terminate()
+//  }
 }
