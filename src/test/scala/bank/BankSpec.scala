@@ -1,11 +1,9 @@
 package bank
 import akka.actor.ActorSystem
-import akka.testkit.{CallingThreadDispatcher, TestKit, EventFilter}
+import akka.testkit.TestKit
 import org.scalatest.{MustMatchers, WordSpecLike}
-import akka.util.Timeout
-import scala.concurrent.duration._
 
-class BankActorSpec extends TestKit(ActorSystem("testSystem"))
+class BankSpec extends TestKit(ActorSystem("testSystem"))
   with WordSpecLike
   with MustMatchers
   with StopSystemAfterAll {
@@ -13,8 +11,6 @@ class BankActorSpec extends TestKit(ActorSystem("testSystem"))
   "A Bank silent Actor" must {
     "show Correctly calculate the money when client withdraw money from their account sometimes" in {
       import Bank._
-      implicit val executionContext = system.dispatcher
-      implicit val timeout = Timeout(3 seconds)
 
       val bankActor = system.actorOf(Bank.props, "bankSystemTest")
       bankActor ! Withdraw(10000)
