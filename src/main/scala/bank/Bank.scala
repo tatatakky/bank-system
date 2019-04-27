@@ -8,8 +8,7 @@ object Bank {
   case class Withdraw(amount: Int) //引き出し
   case class Deposit(amount: Int) //預金
   case class Transfer(amount: Int) //振り込み
-//  case class ShowAccount() //通知
-  case class ShowAccount(receiver: ActorRef) //テスト用
+  case class ShowAccount() //通知
 }
 
 class Bank extends Actor with ActorLogging{
@@ -17,12 +16,9 @@ class Bank extends Actor with ActorLogging{
   def receive = {
     case Withdraw(amount) =>
       money = money - amount
-//    case ShowAccount() =>
-//      sender() ! money
-
-// -------------テスト--------------
-    case ShowAccount(receiver) =>
-      receiver ! money
-// --------------------------------
+      log.info(s"Money of your account is ${money} after Withdraw")
+    case ShowAccount() =>
+      log.info(s"Show your account : ${money}")
+      sender() ! money
   }
 }

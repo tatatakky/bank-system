@@ -12,10 +12,10 @@ class BankSpec extends TestKit(ActorSystem("testSystem"))
     "show Correctly calculate the money when client withdraw money from their account sometimes" in {
       import Bank._
 
-      val bankActor = system.actorOf(Bank.props, "bankSystemTest")
-      bankActor ! Withdraw(10000)
-      bankActor ! Withdraw(20000)
-      bankActor ! ShowAccount(testActor)
+      val bankActorRef = system.actorOf(Bank.props, "bankSystemTest")
+      bankActorRef ! Withdraw(10000)
+      bankActorRef ! Withdraw(20000)
+      bankActorRef.tell(ShowAccount(), testActor)
       expectMsg(70000)
     }
   }
