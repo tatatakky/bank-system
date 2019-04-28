@@ -8,7 +8,7 @@ object Bank {
   case class Withdraw(amount: Int) //引き出し
   case class Deposit(amount: Int) //預金
   case class Transfer(amount: Int) //振り込み
-  case class ShowAccount() //通知
+  case object ShowAccount //通知
 }
 
 class Bank extends Actor with ActorLogging{
@@ -17,7 +17,7 @@ class Bank extends Actor with ActorLogging{
     case Withdraw(amount) =>
       money = money - amount
       log.info(s"Money of your account is ${money} after Withdraw")
-    case ShowAccount() =>
+    case ShowAccount =>
       log.info(s"Show your account : ${money}")
       sender() ! money
   }

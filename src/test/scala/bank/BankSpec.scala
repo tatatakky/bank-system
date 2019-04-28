@@ -15,7 +15,7 @@ class BankSpec extends TestKit(ActorSystem("testSystem"))
       val bankActorRef = system.actorOf(Bank.props, "bankSystemTest")
       bankActorRef ! Withdraw(10000)
       bankActorRef ! Withdraw(20000)
-      bankActorRef.tell(ShowAccount(), testActor)
+      bankActorRef.tell(ShowAccount, testActor)
       expectMsg(70000)
     }
   }
